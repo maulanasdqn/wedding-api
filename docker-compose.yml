@@ -1,0 +1,15 @@
+services:
+  db:
+    container_name: db
+    image: postgres:12
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: website_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
