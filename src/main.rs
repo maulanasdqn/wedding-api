@@ -11,10 +11,17 @@ use routes::upload_audio as upload_audio_routes;
 use sqlx::postgres::PgPoolOptions;
 use sqlx::Executor;
 use std::env;
+use std::fs;
 
 #[launch]
 async fn rocket() -> _ {
     dotenv::dotenv().ok();
+
+    let upload_dir = "uploads/audio";
+
+    if let Err(e) = fs::create_dir_all(upload_dir) {
+        eprintln!("Failed to create upload directory {}: {}", upload_dir, e);
+    }
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
@@ -57,6 +64,7 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(pool)
+        .mount("/uploads", rocket::fs::FileServer::from("uploads"))
         .mount(
             "/",
             routes![
