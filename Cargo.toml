@@ -3,14 +3,6 @@ name = "wedding-api"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "server"
-path = "backend/main.rs"
-
-[[bin]]
-name = "seed"
-path = "backend/seed.rs"
-
 [dependencies]
 rocket = { version = "0.5", features = ["json"] }
 rocket_cors = { version = "0.6.0", default-features = false }
@@ -27,3 +19,4 @@ validator = { version = "0.19.0", features = ["derive"] }
 dotenv = "0.15.0"
 uuid = { version = "1.11.0", features = ["v4"] }
 safe-regex = "0.3.0"
+openssl = { version = "0.10", features = ["vendored"] }
