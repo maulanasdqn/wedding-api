@@ -13,19 +13,26 @@ pub struct MessageResponse {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub enum TResponse<T> {
-    Success { meta: Option<TMeta>, data: T },
-    Error { error: MessageResponse },
+pub struct TResponse<T> {
+    pub meta: Option<TMeta>,
+    pub data: Option<T>,
+    pub error: Option<MessageResponse>,
 }
 
 impl<T> TResponse<T> {
     pub fn success(meta: Option<TMeta>, data: T) -> Self {
-        TResponse::Success { meta, data }
+        TResponse {
+            meta,
+            data: Some(data),
+            error: None,
+        }
     }
 
     pub fn error(message: String) -> Self {
-        TResponse::Error {
-            error: MessageResponse { message },
+        TResponse {
+            meta: None,
+            data: None,
+            error: Some(MessageResponse { message }),
         }
     }
 }
