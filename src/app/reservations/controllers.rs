@@ -1,6 +1,5 @@
 use super::{models, services};
-use crate::commons::constants::endpoints;
-use crate::utils::format_response::TMeta;
+use crate::commons::{constants::endpoints, structs::response::TMeta};
 use axum::{
     extract::Query,
     response::IntoResponse,
@@ -19,5 +18,8 @@ pub async fn create(Json(payload): Json<models::CreateReservation>) -> impl Into
 pub fn reservation_controller() -> Router {
     Router::new()
         .route(endpoints::GET_ALL, get(get_all))
+        .route(endpoints::GET_DETAIL, get(get_all))
+        .route(endpoints::DELETE, get(get_all))
+        .route(endpoints::UPDATE, get(get_all))
         .route(endpoints::CREATE, post(create))
 }
