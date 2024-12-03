@@ -2,19 +2,22 @@
 name = "wedding-api"
 version = "0.1.0"
 edition = "2021"
+maintainers = ["Maulana Sodiqin"]
+repository = "https://github.com/maulanasodiqin/rust-wedding"
+license = "MIT"
 
 [dependencies]
 axum = "0.7.7"
 serde = { version = "1.0.214", features = ["derive"] }
 serde_json = "1.0.132"
-tokio = { version = "1.41.1", features = ["full"] }
+tokio = { version = "1.41.1", features = ["rt-multi-thread"] }
 sea-orm = { version = "1.1.1", features = [ "sqlx-postgres", "macros", "with-json", "with-uuid"] }
 uuid = { version = "1.11.0", features = ["v4"] }
 
-
-
 [workspace]
-members = [
-    "src/libs/sea_orm/migration"
-]
+members = ["src/libs/sea_orm/migration"]
 
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
