@@ -4,4 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+argon2 = { version = "0.5.3", features = ["password-hash"] }
+axum = "0.7.9"
+chrono = { version = "0.4.38", features = ["serde"] }
+jsonwebtoken = "9.3.0"
+rand_core = { version = "0.6.4", features = ["getrandom"] }
 serde = { version = "1.0.214", features = ["derive"] }

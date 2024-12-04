@@ -1,5 +1,7 @@
 use structs::response::{MessageResponse, TMeta, TResponse};
 
+pub mod jwt;
+pub mod password;
 pub mod structs;
 
 impl<T> TResponse<T> {

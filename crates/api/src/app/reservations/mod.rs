@@ -1,6 +1,5 @@
 pub mod reservation_controller;
 pub mod reservation_dto;
-pub mod reservation_endpoint;
 pub mod reservation_service;
 
 use axum::{
