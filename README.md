@@ -1,11 +1,10 @@
 # Wedding Reservation API
 
-This project is a Wedding Reservation API built using Rust, leveraging the Axum web framework and SeaORM for database interactions.
+This project is a Wedding Reservation API built using Rust.
 
 ## Features
 
 - **RESTful API**: Provides endpoints for managing wedding reservations.
-- **Asynchronous Operations**: Utilizes Rust's async capabilities for efficient performance.
 - **Database Integration**: Employs SeaORM for seamless database interactions.
 
 ## Prerequisites
@@ -18,8 +17,8 @@ This project is a Wedding Reservation API built using Rust, leveraging the Axum 
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/maulanasdqn/rust-wedding.git
-   cd rust-wedding
+   git clone https://github.com/maulanasdqn/wedding-api.git
+   cd wedding-api
    ```
 
 2. **Set Up Environment Variables**:
@@ -33,7 +32,7 @@ This project is a Wedding Reservation API built using Rust, leveraging the Axum 
 3. **Install Dependencies**:
 
    ```bash
-   cargo build
+   cargo build --release
    ```
 
 4. **Run Database Migrations**:
@@ -45,17 +44,10 @@ This project is a Wedding Reservation API built using Rust, leveraging the Axum 
 5. **Start the Server**:
 
    ```bash
-   cargo run
+   cargo run -p api --release
    ```
 
-   The API will be accessible at `http://localhost:3000`.
-
-## Usage
-
-- **Create a Reservation**: Send a `POST` request to `/api/reservations/create` with the reservation details.
-- **Get Reservations**: Send a `GET` request to `/api/reservations` to retrieve all reservations.
-- **Update a Reservation**: Send a `PUT` request to `/api/reservations/{id}/update` with the updated details.
-- **Delete a Reservation**: Send a `DELETE` request to `/api/reservations/{id}/delete` to remove a reservation.
+   The API will be accessible at `http://localhost:3000/api/docs`.
 
 ## Contributing
 
