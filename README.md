@@ -6,11 +6,14 @@ This project is a Wedding Reservation API built using Rust.
 
 - **RESTful API**: Provides endpoints for managing wedding reservations.
 - **Database Integration**: Employs SeaORM for seamless database interactions.
+- **Authentication**: Authentication and Middleware
+- **CORS Handling**: Handling CORS with Tower HTTP CorsLayer
 
 ## Prerequisites
 
 - **Rust**: Ensure that Rust is installed on your system. You can install it from [rust-lang.org](https://www.rust-lang.org/).
 - **Database**: Set up a PostgreSQL database and note the connection details.
+- **Docker**: if you want build this project using docker, you need docker, You can install it from [docker.com](https://www.docker.com/)
 
 ## Getting Started
 
@@ -33,6 +36,9 @@ This project is a Wedding Reservation API built using Rust.
 
    ```bash
    cargo build --release
+   ```
+    ```bash
+   cargo install sea-orm-cli
    ```
 
 4. **Run Database Migrations**:
