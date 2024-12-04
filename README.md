@@ -57,8 +57,8 @@ This project is a Wedding Reservation API built using Rust.
 
 ## Endpoints
 
-**Get Reservation** : `http://localhost:3000/api/reservations`
-**Create Reservation**: `http://localhost:3000/api/reservations/create`
+- **Get Reservation** : `http://localhost:3000/api/reservations`
+- **Create Reservation**: `http://localhost:3000/api/reservations/create`
 
 ## Contributing
 
