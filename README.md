@@ -55,6 +55,11 @@ This project is a Wedding Reservation API built using Rust.
 
    The API will be accessible at `http://localhost:3000/api/docs`.
 
+## Endpoints
+
+**Get Reservation** : `http://localhost:3000/api/reservations`
+**Create Reservation**: `http://localhost:3000/api/reservations/create`
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
