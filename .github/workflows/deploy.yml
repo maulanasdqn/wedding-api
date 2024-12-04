@@ -31,6 +31,9 @@ jobs:
             echo "Building the application..."
             cargo build --release
 
+            echo "Stoping the service..."
+            sudo systemctl stop api.service
+
             echo "Replacing the service binary..."
             sudo cp target/release/api /usr/local/bin/api
             sudo chmod +x /usr/local/bin/api
