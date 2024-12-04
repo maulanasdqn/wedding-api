@@ -1,3 +1,5 @@
 [env]
+RUST_LOG="api=debug,database=debug,server=debug"
 
-RUST_LOG="web_server=debug,lib_core=debug,lib_web=debug,lib_auth=debug,lib_utils=debug"
+# For local development only
+DATABASE_URL="postgres://postgres:admin@localhost:5432/wedding_db"
