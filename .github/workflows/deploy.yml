@@ -1,0 +1,42 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 103.191.63.185 >> ~/.ssh/known_hosts
+
+      - name: Deploy Application
+        run: |
+          ssh -i ~/.ssh/id_rsa root@103.191.63.185 << 'EOF'
+            set -e
+            echo "Pulling latest changes..."
+            cd /root/rust-wedding
+            git pull origin main
+            
+            echo "Building the application..."
+            cargo build --release
+
+            echo "Replacing the service binary..."
+            sudo cp target/release/api /usr/local/bin/api
+            sudo chmod +x /usr/local/bin/api
+
+            echo "Restarting the service..."
+            sudo systemctl restart api.service
+            
+            echo "Deployment complete!"
+          EOF
