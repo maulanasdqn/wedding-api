@@ -2,7 +2,7 @@
 name = "api"
 version = "0.1.0"
 edition = "2021"
-repository = "https://github.com/maulanasodiqin/wedding-website"
+repository = "https://github.com/maulanasodiqin/wedding-api"
 license = "MIT"
 
 [dependencies]
