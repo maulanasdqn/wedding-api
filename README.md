@@ -53,7 +53,7 @@ This project is a Wedding Reservation API built using Rust.
    cargo run -p api --release
    ```
 
-   The API will be accessible at `http://localhost:3000/api/docs`.
+   The API will be accessible at `http://localhost:3000`.
 
 ## Endpoints
 
