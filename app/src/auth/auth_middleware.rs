@@ -7,12 +7,18 @@ use axum::{
 	http::{self, Response, StatusCode},
 	middleware::Next,
 };
+use serde_json::json;
 use utils::{jwt::decode_jwt, structs::response::MessageResponse};
 
 fn format_error(message: String) -> Response<Body> {
+	let error_body = json!({
+		"message": message
+	});
+
 	Response::builder()
 		.status(StatusCode::FORBIDDEN)
-		.body(Body::from(message))
+		.header(http::header::CONTENT_TYPE, "application/json")
+		.body(Body::from(error_body.to_string()))
 		.unwrap()
 }
 
