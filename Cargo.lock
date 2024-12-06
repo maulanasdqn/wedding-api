@@ -3280,6 +3280,7 @@ dependencies = [
  "jsonwebtoken",
  "rand_core",
  "serde",
+ "serde_json",
 ]
 
 [[package]]

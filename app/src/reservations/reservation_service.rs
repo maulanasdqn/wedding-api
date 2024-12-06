@@ -1,17 +1,23 @@
 use axum::Json;
 use database::get_db;
-use database::schemas::reservation::{ActiveModel, Entity, Model};
+use database::schemas::reservation::{ActiveModel, Entity};
 use sea_orm::sqlx::types::chrono;
 use sea_orm::{ActiveModelTrait, EntityTrait, PaginatorTrait, Set};
-use utils::structs::response::{TMeta, TResponse};
+use serde_json::Value;
+use utils::structs::response::TMeta;
 use utils::{format_error, format_success};
 use uuid::Uuid;
 
 use super::reservation_dto::ReservationDto;
 
+#[derive(serde::Serialize)]
+pub struct ErrorResponse {
+	pub message: String,
+}
+
 pub async fn create_reservation(
 	new_reservation: Json<ReservationDto>,
-) -> Json<TResponse<Model>> {
+) -> Json<Value> {
 	let db = get_db().await;
 
 	let active_model = ActiveModel {
@@ -24,19 +30,15 @@ pub async fn create_reservation(
 	};
 
 	match active_model.insert(&db).await {
-		Ok(model) => {
-			let response = format_success(model, None);
-			Json(response)
-		}
-		Err(err) => {
-			let error_message = format!("Failed to create reservations: {}", err);
-			let response = format_error(error_message);
-			Json(response)
-		}
+		Ok(model) => Json(format_success(model, None)),
+		Err(err) => Json(format_error(&format!(
+			"Failed to create reservations: {}",
+			err
+		))),
 	}
 }
 
-pub async fn fetch_reservations(params: TMeta) -> Json<TResponse<Vec<Model>>> {
+pub async fn fetch_reservations(params: TMeta) -> Json<Value> {
 	let db = get_db().await;
 
 	let page = params.page.unwrap_or(1);
@@ -47,18 +49,20 @@ pub async fn fetch_reservations(params: TMeta) -> Json<TResponse<Vec<Model>>> {
 	let reservations = match paginator.fetch_page(page - 1).await {
 		Ok(reservations) => reservations,
 		Err(err) => {
-			let error_message = format!("Failed to fetch reservations: {}", err);
-			let response = format_error(error_message);
-			return Json(response);
+			return Json(format_error(&format!(
+				"Failed to fetch reservations: {}",
+				err
+			)));
 		}
 	};
 
 	let total = match paginator.num_items().await {
 		Ok(total) => total,
 		Err(err) => {
-			let error_message = format!("Failed to count reservations: {}", err);
-			let response = format_error(error_message);
-			return Json(response);
+			return Json(format_error(&format!(
+				"Failed to count reservations: {}",
+				err
+			)));
 		}
 	};
 
@@ -68,6 +72,5 @@ pub async fn fetch_reservations(params: TMeta) -> Json<TResponse<Vec<Model>>> {
 		total: Some(total),
 	};
 
-	let response = format_success(reservations, Some(meta));
-	Json(response)
+	Json(format_success(reservations, Some(meta)))
 }

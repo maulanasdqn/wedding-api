@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct TMeta {
 	pub page: Option<u64>,
 	pub per_page: Option<u64>,
@@ -8,15 +9,16 @@ pub struct TMeta {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct MessageResponse {
 	pub message: String,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct TResponse<T> {
 	pub meta: Option<TMeta>,
 	pub data: Option<T>,
-	pub error: Option<MessageResponse>,
 }
 
 impl Default for TMeta {

@@ -1,31 +1,25 @@
-use structs::response::{MessageResponse, TMeta, TResponse};
-
 pub mod jwt;
 pub mod password;
 pub mod structs;
 
-impl<T> TResponse<T> {
-	pub fn success(meta: Option<TMeta>, data: T) -> Self {
-		TResponse {
-			meta,
-			data: Some(data),
-			error: None,
-		}
-	}
+use serde_json::json;
+use serde_json::Value;
+use structs::response::TMeta;
 
-	pub fn error(message: String) -> Self {
-		TResponse {
-			meta: None,
-			data: None,
-			error: Some(MessageResponse { message }),
-		}
+pub fn format_success<T: serde::Serialize>(data: T, meta: Option<TMeta>) -> Value {
+	match meta {
+		Some(meta) => json!({
+			"meta": {
+				"page": meta.page,
+				"per_page": meta.per_page,
+				"total": meta.total
+			},
+			"data": data
+		}),
+		None => json!({ "data": data }),
 	}
 }
 
-pub fn format_success<T>(data: T, meta: Option<TMeta>) -> TResponse<T> {
-	TResponse::success(meta, data)
-}
-
-pub fn format_error<T>(message: String) -> TResponse<T> {
-	TResponse::error(message)
+pub fn format_error(message: &str) -> Value {
+	json!({ "message": message })
 }
