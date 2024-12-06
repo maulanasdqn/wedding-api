@@ -12,3 +12,8 @@ pub struct AuthDto {
 	))]
 	pub password: String,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthResponse {
+	pub token: String,
+}

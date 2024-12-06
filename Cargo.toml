@@ -1,11 +1,11 @@
 [workspace]
 resolver = "2"
 members = [
-  "migration",
-  "crates/api", 
-  "crates/utils",
-  "crates/libs/server",
-  "crates/libs/database",
+  "app", 
+  "utils",
+  ".migration",
+  "libs/server",
+  "libs/database",
 ]
 
 [profile.release]
