@@ -1,13 +1,15 @@
+use std::net::SocketAddr;
+
 use axum::{serve, Router};
 use log::{error, info};
-use std::net::SocketAddr;
 use tokio::net::TcpListener;
 
-pub async fn run<F>(router_fn: F)
+pub async fn run<F, Fut>(router_fn: F)
 where
-	F: Fn() -> Router,
+	F: Fn() -> Fut,
+	Fut: std::future::Future<Output = Router>,
 {
-	let router = router_fn();
+	let router = router_fn().await;
 	let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
 	let listener = TcpListener::bind(&addr).await.unwrap();
 	info!("Listening on http://{}", addr);

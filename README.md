@@ -14,6 +14,7 @@ This project is a Wedding Reservation API built using Rust.
 - **Rust**: Ensure that Rust is installed on your system. You can install it from [rust-lang.org](https://www.rust-lang.org/).
 - **Database**: Set up a PostgreSQL database and note the connection details.
 - **Docker**: if you want build this project using docker, you need docker, You can install it from [docker.com](https://www.docker.com/)
+- **Nix**: if you want build this project using nix, you need nix, You can install it from [nixos.org](https://nixos.org/)
 
 ## Getting Started
 
@@ -54,6 +55,49 @@ This project is a Wedding Reservation API built using Rust.
    ```
 
    The API will be accessible at `http://localhost:3000`.
+
+## Docker
+
+1. **Build the Docker Image**:
+
+   ```bash
+   docker build -t wedding-api .
+   ```
+
+2. **Run the Docker Container**:
+
+   ```bash
+   docker run -p 3000:3000 -e DATABASE_URL=postgres://username:password@localhost/database_name wedding-api
+   ```
+
+   The API will be accessible at `http://localhost:3000`.
+
+
+## Using Nix as Builder
+
+1. **Install Nix**:
+
+   ```bash
+   curl -L https://nixos.org/nix/install | sh
+   ```
+
+2. **Switch to Nix Shell or Nix Flake**:
+
+   ```bash
+   nix develop
+   ```
+
+3. **Build the Project**:
+
+   ```bash
+   nix build
+   ```
+
+4. **Run the Server**:
+
+   ```bash
+    nix run
+   ```
 
 ## Endpoints
 
