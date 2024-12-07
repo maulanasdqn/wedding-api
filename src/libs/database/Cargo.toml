@@ -3,6 +3,10 @@ name = "database"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "database"
+path = "lib.rs"
+
 [dependencies]
 log = "0.4.22"
 sea-orm = { version = "1.1.1", features = [ "sqlx-postgres", "macros", "with-json", "with-uuid", "runtime-tokio", "runtime-tokio-native-tls"] }

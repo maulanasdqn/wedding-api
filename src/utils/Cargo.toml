@@ -3,6 +3,10 @@ name = "utils"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "utils"
+path = "lib.rs"
+
 [dependencies]
 argon2 = { version = "0.5.3", features = ["password-hash"] }
 axum = "0.7.9"

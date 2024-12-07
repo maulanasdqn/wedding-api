@@ -1,11 +1,13 @@
 [workspace]
 resolver = "2"
 members = [
-  "app", 
-  "utils",
   ".migration",
-  "libs/server",
-  "libs/database",
+  "src/app", 
+  "src/utils",
+  "src/libs/docs",
+  "src/libs/server",
+  "src/libs/storage",
+  "src/libs/database",
 ]
 
 [profile.release]
