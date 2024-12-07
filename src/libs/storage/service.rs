@@ -26,7 +26,7 @@ impl MinioClient {
 		let client = Minio::builder()
 			.endpoint(&endpoint)
 			.provider(provider)
-			.secure(false)
+			.secure(true)
 			.build()?;
 
 		if !client.bucket_exists(&bucket_name).await? {
@@ -75,7 +75,7 @@ impl MinioClient {
 			.await?;
 
 		let file_url = format!(
-			"http://{}/{}/{}",
+			"https://{}/{}/{}",
 			endpoint, self.bucket_name, unique_filename
 		);
 
