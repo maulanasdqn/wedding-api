@@ -2,6 +2,7 @@
 /.direnv
 /.env
 /.envrc
+/result
 
 # Logs
 logs
