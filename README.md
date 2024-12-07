@@ -8,6 +8,8 @@ This project is a Wedding Reservation API built using Rust.
 - **Database Integration**: Employs SeaORM for seamless database interactions.
 - **Authentication**: Authentication and Middleware
 - **CORS Handling**: Handling CORS with Tower HTTP CorsLayer
+- **API Docs**: OpenAPI Swager Ready
+- **Minio Object Storage**: Integrated with Minio Object Storage
 
 ## Prerequisites
 
@@ -101,8 +103,9 @@ This project is a Wedding Reservation API built using Rust.
 
 ## Endpoints
 
-- **Get Reservation** : `http://localhost:3000/api/reservations`
+- **Get Reservations** : `http://localhost:3000/api/reservations`
 - **Create Reservation**: `http://localhost:3000/api/reservations/create`
+- **Upload Files** `http://localhost:3000/api/upload`
 
 ## Contributing
 
