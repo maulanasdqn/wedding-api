@@ -1,7 +1,6 @@
 [env]
 RUST_LOG="api=debug,database=debug,server=debug, utils=debug"
 
-# For local development only
 DATABASE_URL="postgres://postgres:admin@localhost:5432/wedding_db"
 USER_EMAIL="admin@admin.com"
 USER_PASSWORD="admin"

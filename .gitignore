@@ -1,10 +1,8 @@
-/target
-/.direnv
-/.env
-/.envrc
-/result
-
-# Logs
+target
+.direnv
+.env
+.envrc
+result
 logs
 *.log
 npm-debug.log*
@@ -12,13 +10,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
 node_modules
 dist
 dist-ssr
 *.local
-
-# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -28,12 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-# Devenv
 .devenv*
 devenv.local.nix
-
-# direnv
 .direnv
-
-# pre-commit
 .pre-commit-config.yaml
