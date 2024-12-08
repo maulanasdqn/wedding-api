@@ -42,7 +42,7 @@ pub async fn fetch_reservations(params: TMeta) -> Json<Value> {
 	let db = get_db().await;
 
 	let page = params.page.unwrap_or(1);
-	let per_page = params.per_page.unwrap_or(10);
+	let per_page = params.per_page.unwrap_or(1000);
 
 	let paginator = Entity::find().paginate(&db, per_page);
 
