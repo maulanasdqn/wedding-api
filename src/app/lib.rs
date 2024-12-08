@@ -13,13 +13,21 @@ use storage::upload_routes;
 use tower_http::cors::CorsLayer;
 
 pub async fn routes() -> Router {
-	let cors_origin = match env::var("RUST_ENV").as_deref() {
-		Ok("development") => "http://localhost:5173",
-		_ => "https://wedding.fenny.me",
+	let cors_origins = match env::var("RUST_ENV").as_deref() {
+		Ok("development") => vec!["http://localhost:5173"],
+		Ok("production") => {
+			vec!["https://wedding.fenny.me", "https://wedding.msdqn.dev"]
+		}
+		_ => vec!["https://wedding.fenny.me"],
 	};
 
+	let allowed_origins: Vec<HeaderValue> = cors_origins
+		.into_iter()
+		.filter_map(|origin| origin.parse::<HeaderValue>().ok())
+		.collect();
+
 	let cors_middleware = CorsLayer::new()
-		.allow_origin(cors_origin.parse::<HeaderValue>().unwrap())
+		.allow_origin(allowed_origins)
 		.allow_methods([Method::GET, Method::POST, Method::OPTIONS])
 		.allow_headers([header::AUTHORIZATION, header::CONTENT_TYPE])
 		.allow_credentials(true);

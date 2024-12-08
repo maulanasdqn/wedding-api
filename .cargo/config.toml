@@ -1,8 +1,2 @@
 [env]
 RUST_LOG="api=debug,database=debug,server=debug, utils=debug"
-
-DATABASE_URL="postgres://postgres:admin@localhost:5432/wedding_db"
-USER_EMAIL="admin@admin.com"
-USER_PASSWORD="admin"
-JWT_SECRET="435e5d5f-4e0e-4b7d-8e9f-9a0b0c0d0e0f"
-CORS_ORIGIN="http://localhost:3000"

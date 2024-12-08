@@ -1,8 +1,8 @@
 use api::routes;
-use server::init::run;
+use server::init;
 use tokio;
 
 #[tokio::main]
 async fn main() {
-	run(routes).await;
+	init::run(routes).await;
 }
