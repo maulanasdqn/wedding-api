@@ -8,7 +8,8 @@ where
 	Fut: Future<Output = Router>,
 {
 	let router = router_fn().await;
-	let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+	let addr =
+		SocketAddr::from(([0, 0, 0, 0], env::var("PORT").unwrap().parse().unwrap()));
 	let listener = TcpListener::bind(&addr).await.unwrap();
 	print!("Listening on http://{}", addr);
 	match serve(listener, router).await {
