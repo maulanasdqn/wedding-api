@@ -8,7 +8,7 @@ use axum::{
 	middleware::Next,
 };
 use serde_json::json;
-use utils::{jwt::decode_jwt, structs::response::MessageResponse};
+use utils::{jwt::decode_access_token, structs::response::MessageResponse};
 
 fn format_error(message: String) -> Response<Body> {
 	let error_body = json!({
@@ -62,7 +62,7 @@ pub async fn authorization_middleware(
 		}
 	};
 
-	let token_data = match decode_jwt(token.to_string()) {
+	let token_data = match decode_access_token(token.to_string()) {
 		Ok(data) => data,
 		Err(_) => {
 			let message = "Invalid token".to_string();

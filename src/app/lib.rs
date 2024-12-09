@@ -38,15 +38,15 @@ pub async fn routes() -> Router {
 			"/api",
 			Router::new()
 				.nest("", protected_routes().await)
-				.nest("/auth", auth_router())
-				.nest("", docs_router().await),
+				.nest("", docs_router().await)
+				.nest("/auth", auth_router()),
 		)
 		.layer(cors_middleware)
 }
 
 async fn protected_routes() -> Router {
 	Router::new()
-		.nest("/reservations", reservation_router())
 		.nest("", upload_routes().await)
+		.nest("/reservations", reservation_router())
 		.layer(from_fn(authorization_middleware))
 }
