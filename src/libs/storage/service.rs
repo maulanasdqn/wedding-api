@@ -75,7 +75,7 @@ impl MinioClient {
 			.await?;
 
 		let file_url = format!(
-			"http://{}/{}/{}",
+			"https://{}/{}/{}",
 			endpoint, self.bucket_name, unique_filename
 		);
 
