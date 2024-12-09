@@ -14,7 +14,7 @@ This project is a Wedding Reservation API built using Rust.
 ## Prerequisites
 
 - **Rust**: Ensure that Rust is installed on your system. You can install it from [rust-lang.org](https://www.rust-lang.org/).
-- **Database**: Set up a PostgreSQL database and note the connection details.
+- **Database**: Set up a SurealDB database and note the connection details, You can install it from [surealdb.com](https://surrealdb.com/)
 - **Docker**: if you want build this project using docker, you need docker, You can install it from [docker.com](https://www.docker.com/)
 - **Nix**: if you want build this project using nix, you need nix, You can install it from [nixos.org](https://nixos.org/)
 
