@@ -131,6 +131,7 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "database",
+ "docs",
  "jsonwebtoken",
  "sea-orm",
  "serde",
@@ -396,6 +397,12 @@ dependencies = [
  "tower-service",
  "tracing",
 ]
+
+[[package]]
+name = "axum-swagger-ui"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "605877320e5ef98ba6bf000eeae03065557b0631d645c08ad6e84340d388948f"
 
 [[package]]
 name = "backtrace"
@@ -822,6 +829,10 @@ dependencies = [
 [[package]]
 name = "docs"
 version = "0.1.0"
+dependencies = [
+ "axum",
+ "axum-swagger-ui",
+]
 
 [[package]]
 name = "dotenvy"
@@ -2830,9 +2841,7 @@ name = "server"
 version = "0.1.0"
 dependencies = [
  "axum",
- "log",
  "tokio",
- "tower 0.5.1",
 ]
 
 [[package]]

@@ -7,6 +7,7 @@ use axum::{
 	middleware::from_fn,
 	Router,
 };
+use docs::docs_router;
 use reservations::reservation_router;
 use std::env;
 use storage::upload_routes;
@@ -37,7 +38,8 @@ pub async fn routes() -> Router {
 			"/api",
 			Router::new()
 				.nest("", protected_routes().await)
-				.nest("/auth", auth_router()),
+				.nest("/auth", auth_router())
+				.nest("", docs_router().await),
 		)
 		.layer(cors_middleware)
 }
