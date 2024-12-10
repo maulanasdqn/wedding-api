@@ -9,12 +9,12 @@ This project is a Wedding Reservation API built using Rust.
 - **Authentication**: Authentication and Middleware
 - **CORS Handling**: Handling CORS with Tower HTTP CorsLayer
 - **API Docs**: OpenAPI Swager Ready
-- **Minio Object Storage**: Integrated with Minio Object Storage
+- **Object Storage**: Integrated with Minio
 
 ## Prerequisites
 
 - **Rust**: Ensure that Rust is installed on your system. You can install it from [rust-lang.org](https://www.rust-lang.org/).
-- **Database**: Set up a SurealDB database and note the connection details, You can install it from [surealdb.com](https://surrealdb.com/)
+- **Database**: Set up a SurrealDB database and note the connection details, You can install it from [surrealdb.com](https://surrealdb.com/)
 - **Docker**: if you want build this project using docker, you need docker, You can install it from [docker.com](https://www.docker.com/)
 - **Nix**: if you want build this project using nix, you need nix, You can install it from [nixos.org](https://nixos.org/)
 
@@ -47,7 +47,7 @@ This project is a Wedding Reservation API built using Rust.
 4. **Run Database Migrations**:
 
    ```bash
-   sea-orm-cli migrate up
+   sea-orm-cli -d .migration migrate up
    ```
 
 5. **Start the Server**:
@@ -56,7 +56,7 @@ This project is a Wedding Reservation API built using Rust.
    cargo run -p api --release
    ```
 
-   The API will be accessible at `http://localhost:3000`.
+   The API will be accessible at `http://localhost:3000/api/docs`.
 
 ## Docker
 
@@ -69,7 +69,7 @@ This project is a Wedding Reservation API built using Rust.
 2. **Run the Docker Container**:
 
    ```bash
-   docker run -p 3000:3000 -e DATABASE_URL=postgres://username:password@localhost/database_name wedding-api
+   docker run -p 3000:3000 --env-file .env wedding-api wedding-api:latest
    ```
 
    The API will be accessible at `http://localhost:3000/api/docs`.
@@ -105,8 +105,10 @@ This project is a Wedding Reservation API built using Rust.
 
 - **API Docs**
 `http://localhost/3000/api/docs` 
-- **Get Reservations** : `http://localhost:3000/api/reservations`
-- **Create Reservation**: `http://localhost:3000/api/reservations/create`
+- **Get Reservations**
+- `http://localhost:3000/api/reservations`
+- **Create Reservation**
+`http://localhost:3000/api/reservations/create`
 - **Upload Files** `http://localhost:3000/api/upload`
 
 ## Contributing
