@@ -29,10 +29,10 @@ This project is a Wedding Reservation API built using Rust.
 
 2. **Set Up Environment Variables**:
 
-   Create a `.env` file in the root directory with the following content:
+   Copy a `.env.exanple` file:
 
    ```env
-   DATABASE_URL=postgres://username:password@localhost/database_name
+   cp .env.example .env
    ```
 
 3. **Install Dependencies**:
@@ -72,7 +72,7 @@ This project is a Wedding Reservation API built using Rust.
    docker run -p 3000:3000 -e DATABASE_URL=postgres://username:password@localhost/database_name wedding-api
    ```
 
-   The API will be accessible at `http://localhost:3000`.
+   The API will be accessible at `http://localhost:3000/api/docs`.
 
 
 ## Using Nix as Builder
@@ -103,6 +103,8 @@ This project is a Wedding Reservation API built using Rust.
 
 ## Endpoints
 
+- **API Docs**
+`http://localhost/3000/api/docs` 
 - **Get Reservations** : `http://localhost:3000/api/reservations`
 - **Create Reservation**: `http://localhost:3000/api/reservations/create`
 - **Upload Files** `http://localhost:3000/api/upload`
@@ -119,3 +121,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - [Axum](https://github.com/tokio-rs/axum)
 - [SeaORM](https://github.com/SeaQL/sea-orm)
+- SurealDB(https://surealdb.com)
