@@ -121,4 +121,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - [Axum](https://github.com/tokio-rs/axum)
 - [SeaORM](https://github.com/SeaQL/sea-orm)
-- SurealDB(https://surealdb.com)
+- [SurealDB](https://surrealdb.com)
