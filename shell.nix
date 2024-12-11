@@ -55,5 +55,11 @@ pkgs.mkShell {
 
   shellHook = ''
     helpme
+    if [ -f .env ]; then
+       echo "Loading .env file..."
+       export $(cat .env | xargs)
+     else
+       echo ".env file not found."
+     fi
   '';
 }
