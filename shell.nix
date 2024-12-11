@@ -4,6 +4,10 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     rust-analyzer
     rustfmt
+    crates2nix
     clippy
+    surrealdb
+    surrealist
+    surrealdb-migrations
   ];
 }
