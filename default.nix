@@ -1,11 +1,14 @@
 {pkgs ? import <nixpkgs> {}}: let
   manifest = (pkgs.lib.importTOML ./src/app/Cargo.toml).package;
-  rustDeps = pkgs.callPackage ./Cargo.nix {inherit pkgs;};
+  rustDeps = pkgs.callPackage ./Cargo.nix {};
+  # Extract the relevant dependencies
+  packageEntry = rustDeps.workspaceMembers.${manifest.name};
+  deps = packageEntry.build.cargoDeps or null;
 in
-  pkgs.rustPlatform.buildRustPackage rec {
+  pkgs.rustPlatform.buildRustPackage {
     pname = manifest.name;
     version = manifest.version;
-    cargoDeps = rustDeps;
+    cargoDeps = deps;
     src = pkgs.lib.cleanSource ./.;
     cargoLock.lockFile = ./Cargo.lock;
     nativeBuildInputs = [pkgs.openssl pkgs.pkg-config];
