@@ -4,7 +4,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     rust-analyzer
     rustfmt
-    crates2nix
+    crate2nix
     clippy
     surrealdb
     surrealist
