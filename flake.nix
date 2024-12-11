@@ -1,5 +1,5 @@
 {
-  description = "Wedding API";
+  description = "Wedding API Nix Flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };

@@ -10969,6 +10969,7 @@ rec {
           {
             name = "uuid";
             packageId = "uuid";
+            features = [ "v4" ];
           }
         ];
 
