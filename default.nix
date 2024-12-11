@@ -1,7 +1,6 @@
 {pkgs ? import <nixpkgs> {}}: let
   manifest = (pkgs.lib.importTOML ./src/app/Cargo.toml).package;
   rustDeps = pkgs.callPackage ./Cargo.nix {};
-  # Extract the relevant dependencies
   packageEntry = rustDeps.workspaceMembers.${manifest.name};
   deps = packageEntry.build.cargoDeps or null;
 in
