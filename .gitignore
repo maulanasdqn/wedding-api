@@ -27,3 +27,4 @@ dist-ssr
 devenv.local.nix
 .direnv
 .pre-commit-config.yaml
+Cargo.nix

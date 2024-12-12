@@ -4,14 +4,17 @@ WORKDIR /app
 
 COPY . .
 
-RUN cargo build --release
+RUN rustup target add x86_64-unknown-linux-musl \
+    && apt-get update \
+    && apt-get install -y musl-tools \
+    && cargo build --release --target=x86_64-unknown-linux-musl
 
 FROM alpine:latest
 
-WORKDIR /usr/local/bin
-
 RUN apk add --no-cache openssl-dev pkgconf
 
-COPY --from=builder /app/target/release/api .
+WORKDIR /usr/local/bin
+
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/api ./api
 
 CMD ["./api"]

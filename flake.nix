@@ -17,5 +17,8 @@
     devShells = forAllSystems (system: {
       default = pkgsFor.${system}.callPackage ./shell.nix {};
     });
+    dockerImages = forAllSystems (system: {
+      weddingApi = pkgsFor.${system}.callPackage ./docker.nix {};
+    });
   };
 }

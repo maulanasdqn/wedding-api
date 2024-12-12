@@ -22,10 +22,11 @@ pkgs.mkShell {
       Cargo Version: v${cargo.version}
 
       Command available:
-        - start:            start project in production ( need to run build first  ) 🛹
+        - start:            start project in production 🛹 ( need to run build first )
         - build:            build project for production
-        - dev:              start development server
-        - apply-env:        apply environment variable to current shell
+        - dev:              start project in development
+        - start-docker:     start project in docker container ( compose )
+        - build-docker:     build project for docker container
         - helpme:           show this messages
 
       Repository:
@@ -41,15 +42,25 @@ pkgs.mkShell {
 
     (writeScriptBin "start" ''
       echo "Starting project in production mode..."
+      echo "WeddingAPI started on port $PORT 🛹..."
       ./result/bin/api
     '')
 
     (writeScriptBin "build" ''
-      nix build -f Cargo.nix
+      echo "Building project..."
+      crate2nix generate && nix build -f Cargo.nix
     '')
 
-    (writeScriptBin "apply-env" ''
-      export $(cat .env | xargs)
+    (writeScriptBin "start-docker" ''
+      echo "Starting project in docker container..."
+      docker compose up -d
+    '')
+
+    (writeScriptBin "build-docker" ''
+      echo "Building project with docker..."
+      docker build -t wedding-api .
+      echo "Project built successfully."
+      echo "Now you can start the project with the command 'start-docker'"
     '')
   ];
 
@@ -58,6 +69,7 @@ pkgs.mkShell {
     if [ -f .env ]; then
        echo "Loading .env file..."
        export $(cat .env | xargs)
+       echo "Successfully loaded .env file."
      else
        echo ".env file not found."
      fi

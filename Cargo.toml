@@ -4,7 +4,6 @@ members = [
   ".migration",
   "src/app", 
   "src/utils",
-  "src/libs/docs",
   "src/libs/server",
   "src/libs/storage",
   "src/libs/database",

@@ -20,11 +20,16 @@ serde_json = "1.0.132"
 tokio = { version = "1.41.1", features = ["rt-multi-thread"] }
 sea-orm = { version = "1.1.1", features = [ "sqlx-postgres", "macros", "with-json", "with-uuid"] }
 uuid = { version = "1.11.0", features = ["v4"] }
+validator = { version = "0.19.0", features = ["derive"] }
+jsonwebtoken = "9.3.0"
+tower-http = { version = "0.6.2", features = ["cors"] }
+utoipa = { version = "4.1.0", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "5.0.0", features = ["axum"] }
+utoipa-redoc = { version = "2.0.0", features = ["axum"] }
+utoipa-rapidoc = { version = "2.0.0", features = ["axum"] }
+
+# Local dependencies
 utils = { path = "../utils" }
 database = { path = "../libs/database" }
 server = { path = "../libs/server" }
 storage = { path = "../libs/storage" }
-docs = { path = "../libs/docs" }
-validator = { version = "0.19.0", features = ["derive"] }
-jsonwebtoken = "9.3.0"
-tower-http = { version = "0.6.2", features = ["cors"] }

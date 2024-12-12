@@ -1,10 +1,10 @@
 use serde::{Deserialize, Serialize};
+use utoipa::ToSchema;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
+#[derive(Deserialize, Clone, Debug, Serialize, ToSchema)]
 pub struct TMeta {
-	pub page: Option<u64>,
-	pub per_page: Option<u64>,
+	pub page: Option<u32>,
+	pub per_page: Option<u32>,
 	pub total: Option<u64>,
 }
 
@@ -19,14 +19,4 @@ pub struct MessageResponse {
 pub struct TResponse<T> {
 	pub meta: Option<TMeta>,
 	pub data: Option<T>,
-}
-
-impl Default for TMeta {
-	fn default() -> Self {
-		TMeta {
-			page: Some(1),
-			per_page: Some(10),
-			total: None,
-		}
-	}
 }

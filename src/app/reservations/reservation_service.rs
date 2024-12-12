@@ -1,3 +1,4 @@
+use super::reservation_dto::{ReservationDto, TMetas};
 use axum::Json;
 use database::get_db;
 use database::schemas::reservation::{ActiveModel, Entity};
@@ -7,13 +8,6 @@ use serde_json::Value;
 use utils::structs::response::TMeta;
 use utils::{format_error, format_success};
 use uuid::Uuid;
-
-use super::reservation_dto::ReservationDto;
-
-#[derive(serde::Serialize)]
-pub struct ErrorResponse {
-	pub message: String,
-}
 
 pub async fn create_reservation(
 	new_reservation: Json<ReservationDto>,
@@ -38,15 +32,14 @@ pub async fn create_reservation(
 	}
 }
 
-pub async fn fetch_reservations(params: TMeta) -> Json<Value> {
+pub async fn fetch_reservations(params: TMetas) -> Json<Value> {
 	let db = get_db().await;
 
-	let page = params.page.unwrap_or(1);
+	let page = params.page.unwrap_or_else(|| 1);
 	let per_page = params.per_page.unwrap_or(1000);
+	let paginator = Entity::find().paginate(&db, per_page.into());
 
-	let paginator = Entity::find().paginate(&db, per_page);
-
-	let reservations = match paginator.fetch_page(page - 1).await {
+	let reservations = match paginator.fetch_page((page - 1).into()).await {
 		Ok(reservations) => reservations,
 		Err(err) => {
 			return Json(format_error(&format!(

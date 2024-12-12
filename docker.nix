@@ -1,22 +1,24 @@
-{
-  pkgs ? import <nixpkgs> {},
-  rustPackage ? import ./default.nix {inherit pkgs;},
-}:
-pkgs.dockerTools.buildImage {
-  name = "wedding-api";
-  fromImage = pkgs.dockerTools.pullImage {
-    imageName = "alpine";
-    imageTag = "latest";
-    sha256 = "sha256:<correct-alpine-image-digest>"; # Replace with actual sha256
+{pkgs, ...}: let
+  baseImage = pkgs.ociTools.pullImage {
+    imageName = "alpine"; # or another lightweight image
+    tag = "latest";
   };
-  config = {
-    Cmd = ["/app/api"];
-    WorkingDir = "/app";
-  };
-  copyToRoot = {
-    "/app" = rustPackage;
-  };
-  extraCommands = ''
-    chmod +x /app/api
-  '';
-}
+in
+  pkgs.dockerTools.buildImage {
+    name = "wedding-api";
+
+    # Use the pulled base image
+    fromImage = baseImage;
+
+    copyToRoot = pkgs.buildEnv {
+      name = "app-env";
+      paths = [
+        (pkgs.callPackage ./default.nix {})
+      ];
+    };
+
+    config = {
+      Cmd = ["/bin/api"];
+      WorkingDir = "/bin";
+    };
+  }
