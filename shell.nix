@@ -48,7 +48,8 @@ pkgs.mkShell {
 
     (writeScriptBin "build" ''
       echo "Building project..."
-      crate2nix generate && nix build -f Cargo.nix
+      crate2nix generate
+      nix build -f Cargo.nix
     '')
 
     (writeScriptBin "start-docker" ''
