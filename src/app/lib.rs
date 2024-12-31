@@ -42,7 +42,8 @@ pub async fn routes() -> Router {
                 reservations::reservation_dto::ReservationDto,
                 reservations::reservation_dto::ReservationListResponse,
                 reservations::reservation_dto::ReservationDetailResponse,
-                reservations::reservation_dto::TMetas
+                reservations::reservation_dto::TMetas,
+                reservations::reservation_dto::TMetaParam
             )
         ),
         info(

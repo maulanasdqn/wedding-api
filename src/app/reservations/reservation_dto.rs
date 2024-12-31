@@ -30,3 +30,12 @@ pub struct TMetas {
 	pub page: Option<u32>,
 	pub per_page: Option<u32>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize, ToSchema, IntoParams)]
+pub struct TMetaParam {
+	pub page: Option<u32>,
+	pub per_page: Option<u32>,
+	pub search: Option<String>,
+	pub order_by: Option<String>,
+	pub sort: Option<String>,
+}

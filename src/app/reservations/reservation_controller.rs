@@ -1,4 +1,4 @@
-use crate::reservations::reservation_dto::TMetas;
+use crate::reservations::reservation_dto::{TMetaParam, TMetas};
 
 use super::{
 	reservation_dto::ReservationDto,
@@ -9,7 +9,7 @@ use axum::{extract::Query, response::IntoResponse, Json};
 #[utoipa::path(
     get,
     path = "/api/reservations",
-    params(TMetas),
+    params(TMetaParam),
     security(
         ("Bearer" = [])
     ),
