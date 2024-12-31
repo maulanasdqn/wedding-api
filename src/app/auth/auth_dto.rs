@@ -21,6 +21,11 @@ pub struct AuthData {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
+pub struct AuthRefreshDto {
+	pub refresh_token: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
 pub struct AuthResponse {
 	pub data: AuthData,
 }

@@ -27,15 +27,21 @@ pub async fn routes() -> Router {
             auth::auth_controller::post_login,
             auth::auth_controller::post_refresh,
             reservations::reservation_controller::create,
-            reservations::reservation_controller::get_all
+            reservations::reservation_controller::get_all,
+            reservations::reservation_controller::get_by_id,
+            reservations::reservation_controller::delete,
+            reservations::reservation_controller::update
         ),
         components(
             schemas(
                 auth::auth_dto::AuthDto,
+                auth::auth_dto::AuthRefreshDto,
                 auth::auth_dto::AuthResponse,
+                auth::auth_dto::AuthData,
                 auth::auth_dto::MessageResponse,
                 reservations::reservation_dto::ReservationDto,
                 reservations::reservation_dto::ReservationListResponse,
+                reservations::reservation_dto::ReservationDetailResponse,
                 reservations::reservation_dto::TMetas
             )
         ),

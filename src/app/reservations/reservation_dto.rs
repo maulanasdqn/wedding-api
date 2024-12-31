@@ -17,6 +17,12 @@ pub struct ReservationDto {
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
 pub struct ReservationListResponse {
 	pub data: Vec<ReservationDto>,
+	pub meta: Option<TMetas>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, ToSchema)]
+pub struct ReservationDetailResponse {
+	pub data: ReservationDto,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, ToSchema, IntoParams)]

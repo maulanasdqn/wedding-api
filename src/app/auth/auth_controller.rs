@@ -22,7 +22,7 @@ pub async fn post_login(Json(payload): Json<AuthDto>) -> impl IntoResponse {
 #[utoipa::path(
     post,
     path = "/api/auth/refresh",
-    request_body(content = String, description = "Refresh token"),
+    request_body(content = AuthRefreshDto, description = "Refresh token"),
     responses(
         (status = 200, description = "Token refreshed", body = AuthResponse),
         (status = 400, description = "Invalid refresh token", body = MessageResponse)
